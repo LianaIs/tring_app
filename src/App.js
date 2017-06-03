@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import AddItem from './components/addItem';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      items: []
+    }
+  }
   render() {
+    console.log(this.state.items);
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <AddItem
+          addItemFunc={(data)=>{
+            const {items} = this.state;
+            // const items = this.state.items;
+            items.push(data);
+            this.setState({items});
+          }}
+        />
       </div>
     );
   }
